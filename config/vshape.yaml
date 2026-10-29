@@ -1,0 +1,51 @@
+vshape_estimator:
+  ros__parameters:
+    scan_topic: /bot_sensor/lidar_front/laser_scan
+    iekf_odom_topic: /bot_sensor/odometer/odometry
+    base_frame: base_footprint
+    lidar_frame: lidar_front
+    # Display/reference height of the 2D target slice; not an estimated z state.
+    marker_height: 0.263
+    output_rate: 30.0
+    iekf_no_measurement_timeout_sec: 0.5
+    # AMR700D-LT900N2-C front mount T_base_lidar. Set these for your actual robot.
+    # No TF lookup is used; incoming frames must match the above.
+    lidar_in_base.x: 0.362
+    lidar_in_base.y: -0.272
+    lidar_in_base.yaw: -0.785398163
+    # Finite arms extend along +/- opening_angle/2 from marker +x.
+    # MiR V-marker: each side 150 mm, internal opening 120 deg (vendor_spec.md).
+    arm_length: 0.15
+    opening_angle_deg: 120.0
+    # Expected T_base_marker for acquisition (radians); used only as a search prior.
+    target_x: 2.0
+    target_y: 0.0
+    target_yaw: 3.141592653589793
+    target_position_tolerance: 0.8
+    target_yaw_tolerance: 0.7
+    iekf_measurement_noise_pos: 0.01
+    iekf_measurement_noise_angle: 0.001
+    # Swept-scan deskew uses a conservative per-point covariance envelope.
+    # Correlation with later process noise remains approximate; validate your scan timing.
+    iekf_arm_model_sigma: 0.002
+    # Q covariance densities, like wall/reflector: m^2/s and rad^2/s.
+    iekf_process_noise_lin: 0.0004
+    iekf_process_noise_ang: 0.0001
+    iekf_odom_extrapolation_max_dt: 0.2
+    # Gap diffusion densities (m/sqrt(s), rad/sqrt(s)), not held-velocity sigma.
+    iekf_odom_gap_linear_noise_density: 0.5
+    iekf_odom_gap_angular_noise_density: 0.5
+    association_distance: 0.04
+    endpoint_margin: 0.01
+    min_support: 0.045
+    # One-sided Gaussian sigma converted to a chi-square gate for actual point count.
+    iekf_chi2_gate_sigma: 5.0
+    iekf_huber_threshold: 2.5
+    iekf_state_history_duration: 1.0
+    iekf_initial_position_sigma: 0.05
+    iekf_initial_yaw_sigma: 0.1
+    min_points: 5
+    max_points_per_arm: 24
+    iekf_max_iterations: 10
+    iekf_state_history_size: 5000
+    max_scan_points: 20000

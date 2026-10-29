@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>ros2_bot_estimator_lidar_vshape</name>
+  <version>0.1.0</version>
+  <description>Planar V marker relative pose estimator with body odometry and LaserScan updates.</description>
+  <maintainer email="maintainer@example.com">BOT Estimator Maintainers</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>eigen</depend>
+  <depend>boost</depend>
+  <depend>rclcpp</depend>
+  <depend>rcl_interfaces</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>diagnostic_msgs</depend>
+  <depend>std_srvs</depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <test_depend>ament_cmake_gtest</test_depend>
+  <test_depend>rclpy</test_depend>
+  <test_depend>rosgraph_msgs</test_depend>
+  <export><build_type>ament_cmake</build_type></export>
+</package>
